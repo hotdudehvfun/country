@@ -1,0 +1,2 @@
+# country
+countries capital currency
