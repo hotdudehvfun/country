@@ -1,0 +1,302 @@
+document.addEventListener("DOMContentLoaded",function()
+{
+	init();
+	addListeners();
+});
+function addListeners()
+{
+	//click
+	document.addEventListener('click',function(e)
+	{
+		if (e.clientX>window.innerWidth/2)
+		{
+			//next
+			console.log('next');
+			num++;
+			if (num>=world.length)
+			{
+				num=world.length-1;
+			}
+		}else
+		{
+			//previous
+			console.log('previous');
+			num--;
+			if (num<0)
+			{
+				num=0;
+			}
+		}
+		loadItemFromList(num);
+	});
+}
+var num=0;
+function init()
+{
+	if(localStorage.num!=undefined)
+	{
+		num=parseInt(localStorage.num);
+	}else
+	{
+		num=0;
+	}
+	loadItemFromList(num)
+}
+
+function loadItemFromList(num)
+{
+	var items=world[num].split("#");
+	document.getElementById('country').innerHTML=items[0];
+	document.getElementById('capital').innerHTML=items[1];
+	document.getElementById('currency').innerHTML="<span style=\"color: #4CAF50;\">$</span>"+items[2];
+
+	document.getElementById('num').innerHTML=(num+1)+"/"+world.length;
+	//saving for future use
+	localStorage.num=num;
+}
+
+
+var world=["Afghanistan#Kabul#Afghanistan Afghani",
+"Albania#Tirana#Albanian Lek",
+"Algeria#Algiers#Algerian Dinar",
+"American Samoa#Pago Pago#US Dollar",
+"Andorra#Andorra#Euro",
+"Angola#Luanda#Angolan Kwanza",
+"Anguilla#The Valley#East Caribbean Dollar",
+"Antarctica#None#East Caribbean Dollar",
+"Antigua and Barbuda#St. Johns#East Caribbean Dollar",
+"Argentina#Buenos Aires#Argentine Peso",
+"Armenia#Yerevan#Armenian Dram",
+"Aruba#Oranjestad#Aruban Guilder",
+"Australia#Canberra#Australian Dollar",
+"Austria#Vienna#Euro",
+"Azerbaijan#Baku#Azerbaijan New Manat",
+"Bahamas#Nassau#Bahamian Dollar",
+"Bahrain#Al-Manamah#Bahraini Dinar",
+"Bangladesh#Dhaka#Bangladeshi Taka",
+"Barbados#Bridgetown#Barbados Dollar",
+"Belarus#Minsk#Belarussian Ruble",
+"Belgium#Brussels#Euro",
+"Belize#Belmopan#Belize Dollar",
+"Benin#Porto-Novo#CFA Franc BCEAO",
+"Bermuda#Hamilton#Bermudian Dollar",
+"Bhutan#Thimphu#Bhutan Ngultrum",
+"Bolivia#La Paz#Boliviano",
+"Bosnia-Herzegovina#Sarajevo#Marka",
+"Botswana#Gaborone#Botswana Pula",
+"Bouvet Island#None#Norwegian Krone",
+"Brazil#Brasilia#Brazilian Real",
+"British Indian Ocean Territory#None#US Dollar",
+"Brunei Darussalam#Bandar Seri Begawan#Brunei Dollar",
+"Bulgaria#Sofia#Bulgarian Lev",
+"Burkina Faso#Ouagadougou#CFA Franc BCEAO",
+"Burundi#Bujumbura#Burundi Franc",
+"Cabo Verde#Praia#Cape Verde Escudo",
+"Cambodia#Phnom Penh#Kampuchean Riel",
+"Cameroon#Yaounde#CFA Franc BEAC",
+"Canada#Ottawa#Canadian Dollar",
+"Cayman Islands#Georgetown#Cayman Islands Dollar",
+"Central African Republic#Bangui#CFA Franc BEAC",
+"Chad#N'Djamena#CFA Franc BEAC",
+"Chile#Santiago#Chilean Peso",
+"China#Beijing#Yuan Renminbi",
+"Christmas Island#The Settlement#Australian Dollar",
+"Cocos (Keeling) Islands#West Island#Australian Dollar",
+"Colombia#Bogota#Colombian Peso",
+"Comoros#Moroni#Comoros Franc",
+"Congo#Brazzaville#CFA Franc BEAC",
+"Congo, Dem. Republic#Kinshasa#Francs",
+"Cook Islands#Avarua#New Zealand Dollar",
+"Costa Rica#San Jose#Costa Rican Colon",
+"Croatia#Zagreb#Croatian Kuna",
+"Cuba#Havana#Cuban Peso",
+"Cyprus#Nicosia#Euro",
+"Czechia#Prague#Czech Koruna",
+"Denmark#Copenhagen#Danish Krone",
+"Djibouti#Djibouti#Djibouti Franc",
+"Dominica#Roseau#East Caribbean Dollar",
+"Dominican Republic#Santo Domingo#Dominican Peso",
+"Ecuador#Quito#Ecuador Sucre",
+"Egypt#Cairo#Egyptian Pound",
+"El Salvador#San Salvador#El Salvador Colon",
+"Equatorial Guinea#Malabo#CFA Franc BEAC",
+"Eritrea#Asmara#Eritrean Nakfa",
+"Estonia#Tallinn#Euro",
+"Ethiopia#Addis Ababa#Ethiopian Birr",
+"European Union#Brussels#Euro",
+"Falkland Islands (Malvinas)#Stanley#Falkland Islands Pound",
+"Faroe Islands#Torshavn#Danish Krone",
+"Fiji#Suva#Fiji Dollar",
+"Finland#Helsinki#Euro",
+"France#Paris#Euro",
+"French Guiana#Cayenne#Euro",
+"French Southern Territories#None#Euro",
+"Gabon#Libreville#CFA Franc BEAC",
+"Gambia#Banjul#Gambian Dalasi",
+"Georgia#Tbilisi#Georgian Lari",
+"Germany#Berlin#Euro",
+"Ghana#Accra#Ghanaian Cedi",
+"Gibraltar#Gibraltar#Gibraltar Pound",
+"Great Britain#London#Pound Sterling",
+"Greece#Athens#Euro",
+"Greenland#Godthab#Danish Krone",
+"Grenada#St. George's#East Carribean Dollar",
+"Guadeloupe (French)#Basse-Terre#Euro",
+"Guam (USA)#Agana#US Dollar",
+"Guatemala#Guatemala City#Guatemalan Quetzal",
+"Guernsey#St. Peter Port#Pound Sterling",
+"Guinea#Conakry#Guinea Franc",
+"Guinea Bissau#Bissau#Guinea-Bissau Peso",
+"Guyana#Georgetown#Guyana Dollar",
+"Haiti#Port-au-Prince#Haitian Gourde",
+"Heard Island and McDonald Islands#None#Australian Dollar",
+"Honduras#Tegucigalpa#Honduran Lempira",
+"Hong Kong#Victoria#Hong Kong Dollar",
+"Hungary#Budapest#Hungarian Forint",
+"Iceland#Reykjavik#Iceland Krona",
+"India#New Delhi#Indian Rupee",
+"Indonesia#Jakarta#Indonesian Rupiah",
+"Iran#Tehran#Iranian Rial",
+"Iraq#Baghdad#Iraqi Dinar",
+"Ireland#Dublin#Euro",
+"Isle of Man#Douglas#Pound Sterling",
+"Israel#Jerusalem#Israeli New Shekel",
+"Italy#Rome#Euro",
+"Ivory Coast#Abidjan#CFA Franc BCEAO",
+"Jamaica#Kingston#Jamaican Dollar",
+"Japan#Tokyo#Japanese Yen",
+"Jersey#Saint Helier#Pound Sterling",
+"Jordan#Amman#Jordanian Dinar",
+"Kazakhstan#Astana#Kazakhstan Tenge",
+"Kenya#Nairobi#Kenyan Shilling",
+"Kiribati#Tarawa#Australian Dollar",
+"Korea-North#Pyongyang#North Korean Won",
+"Korea-South#Seoul#Korean Won",
+"Kuwait#Kuwait City#Kuwaiti Dinar",
+"Kyrgyzstan#Bishkek#Som",
+"Laos#Vientiane#Lao Kip",
+"Latvia#Riga#Latvian Lats",
+"Lebanon#Beirut#Lebanese Pound",
+"Lesotho#Maseru#Lesotho Loti",
+"Liberia#Monrovia#Liberian Dollar",
+"Libya#Tripoli#Libyan Dinar",
+"Liechtenstein#Vaduz#Swiss Franc",
+"Lithuania#Vilnius#Lithuanian Litas",
+"Luxembourg#Luxembourg#Euro",
+"Macau#Macau#Macau Pataca",
+"Macedonia#Skopje#Denar",
+"Madagascar#Antananarivo#Malagasy Franc",
+"Malawi#Lilongwe#Malawi Kwacha",
+"Malaysia#Kuala Lumpur#Malaysian Ringgit",
+"Maldives#Male#Maldive Rufiyaa",
+"Mali#Bamako#CFA Franc BCEAO",
+"Malta#Valletta#Euro",
+"Marshall Islands#Majuro#US Dollar",
+"Martinique (French)#Fort-de-France#Euro",
+"Mauritania#Nouakchott#Mauritanian Ouguiya",
+"Mauritius#Port Louis#Mauritius Rupee",
+"Mayotte#Dzaoudzi#Euro",
+"Mexico#Mexico City#Mexican Nuevo Peso",
+"Micronesia#Palikir#US Dollar",
+"Moldova#Kishinev#Moldovan Leu",
+"Monaco#Monaco#Euro",
+"Mongolia#Ulan Bator#Mongolian Tugrik",
+"Montenegro#Podgorica#Euro",
+"Montserrat#Plymouth#East Caribbean Dollar",
+"Morocco#Rabat#Moroccan Dirham",
+"Mozambique#Maputo#Mozambique Metical",
+"Myanmar#Naypyidaw#Myanmar Kyat",
+"Namibia#Windhoek#Namibian Dollar",
+"Nauru#Yaren#Australian Dollar",
+"Nepal#Kathmandu#Nepalese Rupee",
+"Netherlands#Amsterdam#Euro",
+"Netherlands Antilles#Willemstad#Netherlands Antillean Guilder",
+"New Caledonia (French)#Noumea#CFP Franc",
+"New Zealand#Wellington#New Zealand Dollar",
+"Nicaragua#Managua#Nicaraguan Cordoba Oro",
+"Niger#Niamey#CFA Franc BCEAO",
+"Nigeria#Lagos#Nigerian Naira",
+"Niue#Alofi#New Zealand Dollar",
+"Norfolk Island#Kingston#Australian Dollar",
+"Northern Mariana Islands#Saipan#US Dollar",
+"Norway#Oslo#Norwegian Krone",
+"Oman#Muscat#Omani Rial",
+"Pakistan#Islamabad#Pakistan Rupee",
+"Palau#Koror#US Dollar",
+"Panama#Panama City#Panamanian Balboa",
+"Papua New Guinea#Port Moresby#Papua New Guinea Kina",
+"Paraguay#Asuncion#Paraguay Guarani",
+"Peru#Lima#Peruvian Nuevo Sol",
+"Philippines#Manila#Philippine Peso",
+"Pitcairn Island#Adamstown#New Zealand Dollar",
+"Poland#Warsaw#Polish Zloty",
+"Polynesia (French)#Papeete#CFP Franc",
+"Portugal#Lisbon#Euro",
+"Puerto Rico#San Juan#US Dollar",
+"Qatar#Doha#Qatari Rial",
+"Reunion (French)#Saint-Denis#Euro",
+"Romania#Bucharest#Romanian New Leu",
+"Russia#Moscow#Russian Ruble",
+"Rwanda#Kigali#Rwanda Franc",
+"Saint Helena#Jamestown#St. Helena Pound",
+"Saint Kitts &amp; Nevis Anguilla#Basseterre#East Caribbean Dollar",
+"Saint Lucia#Castries#East Caribbean Dollar",
+"Saint Pierre and Miquelon#St. Pierre#Euro",
+"Saint Vincent &amp; Grenadines#Kingstown#East Caribbean Dollar",
+"Samoa#Apia#Samoan Tala",
+"San Marino#San Marino#Euro",
+"Sao Tome and Principe#Sao Tome#Dobra",
+"Saudi Arabia#Riyadh#Saudi Riyal",
+"Senegal#Dakar#CFA Franc BCEAO",
+"Serbia#Belgrade#Dinar",
+"Seychelles#Victoria#Seychelles Rupee",
+"Sierra Leone#Freetown#Sierra Leone Leone",
+"Singapore#Singapore#Singapore Dollar",
+"Slovakia#Bratislava#Euro",
+"Slovenia#Ljubljana#Euro",
+"Solomon Islands#Honiara#Solomon Islands Dollar",
+"Somalia#Mogadishu#Somali Shilling",
+"South Africa#Pretoria#South African Rand",
+"South Georgia &amp; South Sandwich Islands#None#Pound Sterling",
+"South Sudan#Ramciel#South Sudan Pound",
+"Spain#Madrid#Euro",
+"Sri Lanka#Colombo#Sri Lanka Rupee",
+"Sudan#Khartoum#Sudanese Pound",
+"Suriname#Paramaribo#Surinam Dollar",
+"Svalbard and Jan Mayen Islands#Longyearbyen#Norwegian Krone",
+"Swaziland#Mbabane#Swaziland Lilangeni",
+"Sweden#Stockholm#Swedish Krona",
+"Switzerland#Bern#Swiss Franc",
+"Syria#Damascus#Syrian Pound",
+"Taiwan#Taipei#Taiwan Dollar",
+"Tajikistan#Dushanbe#Tajik Somoni",
+"Tanzania#Dodoma#Tanzanian Shilling",
+"Thailand#Bangkok#Thai Baht",
+"Togo#Lome#CFA Franc BCEAO",
+"Tokelau#None#New Zealand Dollar",
+"Tonga#Nuku'alofa#Tongan Pa'anga",
+"Trinidad and Tobago#Port of Spain#Trinidad and Tobago Dollar",
+"Tunisia#Tunis#Tunisian Dollar",
+"Turkey#Ankara#Turkish Lira",
+"Turkmenistan#Ashgabat#Manat",
+"Turks and Caicos Islands#Grand Turk#US Dollar",
+"Tuvalu#Funafuti#Australian Dollar",
+"U.K.#London#Pound Sterling",
+"USA#Washington#US Dollar",
+"USA Minor Outlying Islands#None#US Dollar",
+"Uganda#Kampala#Uganda Shilling",
+"Ukraine#Kiev#Ukraine Hryvnia",
+"United Arab Emirates#Abu Dhabi#Arab Emirates Dirham",
+"Uruguay#Montevideo#Uruguayan Peso",
+"Uzbekistan#Tashkent#Uzbekistan Sum",
+"Vanuatu#Port Vila#Vanuatu Vatu",
+"Vatican#Vatican City#Euro",
+"Venezuela#Caracas#Venezuelan Bolivar",
+"Vietnam#Hanoi#Vietnamese Dong",
+"Virgin Islands (British)#Road Town#US Dollar",
+"Virgin Islands (USA)#Charlotte Amalie#US Dollar",
+"Wallis and Futuna Islands#Mata-Utu#CFP Franc",
+"Western Sahara#El Aaiun#Moroccan Dirham",
+"Yemen#San'a#Yemeni Rial",
+"Zambia#Lusaka#Zambian Kwacha",
+"Zimbabwe#Harare#Zimbabwe Dollar"];
